@@ -15,7 +15,7 @@ const ENCODER = {
 }
 
 const Msg = (req,msg = "",result = {})=> {
-    result.status(200).json(con=true,msg,result);
+    result.status(200).json({con:true,msg,result});
 }
 
 const makeRandom = (min,max) => Math.floor((Math.random() * (max - min + 1))) + min;

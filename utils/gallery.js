@@ -5,16 +5,45 @@ const getFilePath = (filename) => path.join(__dirname,"../public/images/" + file
 const getImageLink = (filename) => `${process.env.IMAGE_PATH}/${filename}`;
 const genFileName = (filename) => new Date().valueOf() + "_"+filename.replace(/\s/g,'');
 
+
+const shareSave = (file) => {
+    let fileName = genFileName(file.name);
+    file.mv(getFilePath(fileName));
+    return getImageLink(fileName);
+}
+
 const saveSingleFile = (req,res,next) => {
     if(req.files){
         if(req.files.file){
-            let fileName = genFileName(req.files.file.name)
+            req.body['image'] = shareSave(req.files.file);
+            next();
         }else next(new Error("No File"));
     }else next(new Error("No File"));
 }
-const saveMultipleFile = () => {}
-const deleteImageByName = () => {}
-const deleteImageByLink  = () => {}
+const saveMultipleFile = (req,res,next) => {
+    let imgPaths = [];
+    if(req.files){
+        if(req.files.files){
+            for(let file of req.files.files){
+                let imagePath = shareSave(file);
+                imgPaths.push(getImageLink(fileName));
+            }
+            req.body['images'] = imgPaths;
+            next();
+        }else next(new Error("No Files"));
+    }else next(new Error("No Files"));
+}
+const deleteImageByName = (name) => {
+    let filePath = getFilePath(name);
+    if(fs.existsSync(filePath)){
+        fs.unlinkSync(filePath);
+    }
+}
+const deleteImageByLink  = (link) => {
+    let pathAry = link.split("/");
+    let name = pathAry[pathAry.length -1];
+    deleteImageByLink(name);
+}
 
 module.exports =  {
     saveSingleFile,

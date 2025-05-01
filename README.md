@@ -7,7 +7,8 @@ April 30 - Database Design Finished!
 
 May 1 - 
 Using Resdis, Creating Utils
-Creating gallery.js , Filepath create
+Creating gallery.js , Filepath create,
+validator.js create
 
 Utilities
     -Resdis
