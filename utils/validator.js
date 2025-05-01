@@ -8,7 +8,7 @@ module.exports = {
             let token = req.headers.authorization.split(" ")[1];
             JWT.verify(token,process.env.SECRET_KEY,async(err,decoded)=>{
                 if(err){
-                    if(err.message == "jwt expired"){
+                    if(err.message === "jwt expired"){
                         next(new Error("Session pyat twar lox login again!"));
                     }else{
                         next(new Error("Authorization Error"));
@@ -30,10 +30,26 @@ module.exports = {
     },
     validateRole:(Role)=> {
         return async(req,res,next) => {
-            if(req.user.role == Role) {
+            if(req.user.role === Role) {
                 next ();
             }else {
                 next (new Error("You are not permitted to use this route!"))
+            }
+        }
+    },
+
+    validateStaff:(req,res,next) => {
+        if(req.user.role <= 1){
+            next();
+        }else {
+            next(new Error("You are not permitted to use this route!"))
+        }
+    },
+    validateBody:(scheme) => {
+        return (req,res,next) => {
+            const result = scheme.validate(req.body);
+            if(result.error){
+                next(new Error(result.error.details[0].message));
             }
         }
     }
