@@ -45,11 +45,13 @@ module.exports = {
             next(new Error("You are not permitted to use this route!"))
         }
     },
-    validateBody:(scheme) => {
+    validateBody:(schema) => {
         return (req,res,next) => {
-            const result = scheme.validate(req.body);
+            const result = schema.validate(req.body);
             if(result.error){
                 next(new Error(result.error.details[0].message));
+            }else{
+                next();
             }
         }
     }

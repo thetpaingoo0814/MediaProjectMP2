@@ -6,7 +6,6 @@ const server = http.createServer(app);
 const fileUpload = require('express-fileupload');
 
 const mongoose = require('mongoose');
-const res = require("express/lib/response");
 mongoose.connect(process.env.DB_URL);
 
 app.use(express.static('public'));
