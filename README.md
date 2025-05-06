@@ -39,13 +39,14 @@ Flow Layout
 (app) => <Route> => [Validator] -> fail => (Response Error End of code Excution)
                                 -> Pass =>  [Controller] = [Services] => (Database)
     
-
 Create facade.js
-
 Register
     -name
     -phone
     -password
+
+- May6 -
+
 Login
     -name
     -password

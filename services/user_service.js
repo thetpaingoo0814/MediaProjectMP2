@@ -1,4 +1,10 @@
 const model = require('../models/user_model');
+const {RDB} = require('../utils/util');
+
+const getById = async(id) => {
+    let user = await model.findById(id).select('-password');
+    return user;
+}
 
 const getByName = async (name) => {
     let user = await model.findOne({ name });
@@ -16,8 +22,20 @@ const add = async(name,displayName, phone, password) => {
     return result;
 }
 
+const setCacheUser = async(key) => {
+    let user = await getById(key);
+    await RDB.set(key,user);
+}
+
+const getCacheUser = async(key) => {
+    let user = await RDB.get(key);
+    return user;
+}
+
 module.exports = {
     getByName,
     getByPhone,
-    add
+    add,
+    setCacheUser,
+    getCacheUser
 }

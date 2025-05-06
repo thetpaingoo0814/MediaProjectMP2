@@ -28,6 +28,7 @@ module.exports = {
             })
         }
     },
+    
     validateRole:(Role)=> {
         return async(req,res,next) => {
             if(req.user.role === Role) {
@@ -45,6 +46,7 @@ module.exports = {
             next(new Error("You are not permitted to use this route!"))
         }
     },
+
     validateBody:(schema) => {
         return (req,res,next) => {
             const result = schema.validate(req.body);
