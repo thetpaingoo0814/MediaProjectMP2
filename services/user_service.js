@@ -32,10 +32,16 @@ const getCacheUser = async(key) => {
     return user;
 }
 
+const  getUsers = async(index) => {
+    let userCount = 10;
+    await model.find().skip(index * userCount).sort({'created':-1}).limit(10);
+}
+
 module.exports = {
     getByName,
     getByPhone,
     add,
     setCacheUser,
-    getCacheUser
+    getCacheUser,
+    getUsers
 }

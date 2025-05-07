@@ -1,5 +1,5 @@
 const {saveSingleFile,saveMultipleFile,deleteImageByName,deleteImageByLink} = require('./gallery');
-const {RDB, ENCODER,Msg, makeRandom} = require('./util');
+const {RDB, ENCODER,TOKEN,Msg, makeRandom} = require('./util');
 const {validateToken,validateRole,validateStaff,validateBody} = require('./validator');
 
 const UserService = require('../services/user_service');
@@ -13,6 +13,7 @@ module.exports = {
 
     RDB,
     ENCODER,
+    TOKEN,
     Msg,
     makeRandom,
 

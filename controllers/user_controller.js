@@ -1,4 +1,5 @@
-const {Msg, UserService, ENCODER} = require('../utils/facade');
+const { TokenExpiredError } = require('jsonwebtoken');
+const {Msg, UserService, ENCODER,TOKEN} = require('../utils/facade');
 
 const register = async (req,res,next) => {
         let name = req.body.name.toLowerCase();
@@ -42,11 +43,39 @@ const login = async(req, res, next) => {
     }
 
     await UserService.setCacheUser(namedUser._id.toString());
+
+    let token = TOKEN.makeToken(namedUser._id.toString());
     
-    Msg(res,"Login Success",namedUser);
+    Msg(res,"Login Success",token);
+}
+
+const getMe = async(req, res, next) => {
+    let userId = req.userId;
+    let user = req.user;
+    Msg(res, "User Detail", user);
+}
+
+const getUsers = async(req,res,next) => {
+    let pageIndex = req.params.index;
+    let users = await UserService.getUsers(pageIndex);
+    Msg(res,`Page Index ${pageIndex}'s Users`,{});
+}
+
+const getSingleUser = async(req,res,next) => {
+    let userId = req.params.id;
+    let user = await UserService.getById(userId);
+    Msg(res,"Single User",user);
+}
+
+const changeRole = async(req,res,next) => {
+    let userId = req.body.userId;
+    let role = req.body.role;
 }
 
 module.exports = {
     register,
-    login
+    login,
+    getMe,
+    getUsers,
+    getSingleUser
 }

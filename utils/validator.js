@@ -1,5 +1,5 @@
 const JWT = require('jsonwebtoken');
-//const UserService = require('../services/user_service');
+const UserService = require('../services/user_service');
 module.exports = {
     validateToken:(req,res,next) => {
         if(!req.headers.authorization){
@@ -15,15 +15,15 @@ module.exports = {
                     }
                 }else {
                     console.log("Code To Implement when user service is ready!")
-                    // let userId = decoded.indexOf;
-                    // let user = await UserService.getCacheUser(userId);
-                    // if(!user) {
-                    //     next(new Error("Authorizaton Error"));
-                    //     return;
-                    // }
-                    // req.userId = userId;
-                    // req.user  = user;
-                    // next();
+                    let userId = decoded.id;
+                    let user = await UserService.getCacheUser(userId);
+                    if(!user) {
+                        next(new Error("Authorizaton Error"));
+                        return;
+                    }
+                    req.userId = userId;
+                    req.user  = user;
+                    next();
                 }
             })
         }
