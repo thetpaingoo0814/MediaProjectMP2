@@ -3,6 +3,8 @@ const {RDB, ENCODER,TOKEN,Msg, makeRandom} = require('./util');
 const {validateToken,validateRole,validateStaff,validateBody} = require('./validator');
 
 const UserService = require('../services/user_service');
+const CategoryService = require('../services/category_service'); 
+
 const {userSchema} = require('./schemas/user_schema');
 
 module.exports = {
@@ -23,5 +25,7 @@ module.exports = {
     validateRole,
     validateStaff,
     validateBody,
+    
     UserService,
+    CategoryService,
 }

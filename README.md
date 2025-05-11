@@ -50,4 +50,10 @@ Register
 Login
     -name
     -password
+Authorization
+GetUser By Id
+GetALL user
+
+May11
+Create Category
 

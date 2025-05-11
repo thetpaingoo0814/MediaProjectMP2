@@ -13,8 +13,10 @@ app.use(express.json({limit: '10mb'}));
 app.use(fileUpload());
 
 const userRouter = require('./routes/user_route');
+const categoryRouter = require('./routes/category_route');
 
 app.use('/users', userRouter);
+app.use('/cats', categoryRouter);
 
 const {saveSingleFile,RDB} = require('./utils/facade')
 

@@ -3,7 +3,7 @@ const UserService = require('../services/user_service');
 module.exports = {
     validateToken:(req,res,next) => {
         if(!req.headers.authorization){
-            next("Authorization Error");
+            next (new Error("Authorization Error"));
         }else{
             let token = req.headers.authorization.split(" ")[1];
             JWT.verify(token,process.env.SECRET_KEY,async(err,decoded)=>{

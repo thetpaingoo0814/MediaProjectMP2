@@ -58,7 +58,7 @@ const getMe = async(req, res, next) => {
 const getUsers = async(req,res,next) => {
     let pageIndex = req.params.index;
     let users = await UserService.getUsers(pageIndex);
-    Msg(res,`Page Index ${pageIndex}'s Users`,{});
+    Msg(res,`Page Index ${pageIndex}'s Users`,users);
 }
 
 const getSingleUser = async(req,res,next) => {
@@ -70,6 +70,13 @@ const getSingleUser = async(req,res,next) => {
 const changeRole = async(req,res,next) => {
     let userId = req.body.userId;
     let role = req.body.role;
+    let user = await UserService.getById(userId);
+    if(user){
+        await UserService.changeRole(user._id,role);
+        Msg(res,"User Role Changed",user);
+    }else{
+        next(new Error("User Not Found!"));
+    }
 }
 
 module.exports = {
@@ -77,5 +84,6 @@ module.exports = {
     login,
     getMe,
     getUsers,
-    getSingleUser
+    getSingleUser,
+    changeRole
 }

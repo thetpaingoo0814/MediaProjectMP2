@@ -1,5 +1,5 @@
-const fs = require('fs'),
-    path = require('path');
+const fs = require('fs');
+const  path = require('path');
 
 const getFilePath = (filename) => path.join(__dirname,"../public/images/" + filename);
 const getImageLink = (filename) => `${process.env.IMAGE_PATH}/${filename}`;
@@ -42,10 +42,11 @@ const deleteImageByName = (name) => {
 const deleteImageByLink  = (link) => {
     let pathAry = link.split("/");
     let name = pathAry[pathAry.length -1];
-    deleteImageByLink(name);
+    deleteImageByName(name);
 }
 
 module.exports =  {
+
     saveSingleFile,
     saveMultipleFile,
     deleteImageByName,

@@ -32,9 +32,19 @@ const getCacheUser = async(key) => {
     return user;
 }
 
+const changeRole = async(id,role) => {
+    await model.findByIdAndUpdate(id,{role});
+}
+
 const  getUsers = async(index) => {
-    let userCount = 10;
-    await model.find().skip(index * userCount).sort({'created':-1}).limit(10);
+    let userCount = 3;
+    let users = await model.find({
+        $or: [
+            {role: 1},
+            {role: 2}
+        ]
+    }).skip(index * userCount).sort({'created':-1}).limit(10);
+    return users;
 }
 
 module.exports = {
@@ -43,5 +53,7 @@ module.exports = {
     add,
     setCacheUser,
     getCacheUser,
+    changeRole,
+    getById,
     getUsers
 }
