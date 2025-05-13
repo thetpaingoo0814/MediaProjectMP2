@@ -14,9 +14,11 @@ app.use(fileUpload());
 
 const userRouter = require('./routes/user_route');
 const categoryRouter = require('./routes/category_route');
+const tagRouter = require('./routes/tag_route');
 
 app.use('/users', userRouter);
 app.use('/cats', categoryRouter);
+app.use('/tags',tagRouter);
 
 const {saveSingleFile,RDB} = require('./utils/facade')
 

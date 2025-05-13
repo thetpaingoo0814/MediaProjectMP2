@@ -4,6 +4,7 @@ const {validateToken,validateRole,validateStaff,validateBody} = require('./valid
 
 const UserService = require('../services/user_service');
 const CategoryService = require('../services/category_service'); 
+const TagService = require('../services/tag_service');
 
 const {userSchema} = require('./schemas/user_schema');
 
@@ -28,4 +29,5 @@ module.exports = {
     
     UserService,
     CategoryService,
+    TagService
 }
