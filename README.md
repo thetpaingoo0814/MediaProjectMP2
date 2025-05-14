@@ -57,3 +57,7 @@ GetALL user
 May11
 Create Category
 
+May14
+Create Tags
+Modify the code to look like professional code like a pro coder how they validate authentication and authorization using "try catch"
+Error Handling

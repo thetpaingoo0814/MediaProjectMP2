@@ -1,8 +1,14 @@
 const {Msg, TagService} = require('../utils/facade');
 
 const all = async (req, res, next) => {
+
     let tags = await TagService.getAll();
-    Msg(res, "All tags", tags);
+    if (!tags) {
+        next(new Error("Something went wrong Contact the developer"));
+    } else {
+        Msg(res, "All tags", tags);
+    }
+    
 }
 
 const get = async (req, res, next) => {
@@ -36,9 +42,21 @@ const update = async(req,res,next)=>{
     }
 }
 
+const drop = async (req, res, next) => {
+    let id = req.params.id;
+    let tag = await TagService.getById(id);
+    if (tag) {
+        let result = await TagService.remove(tag._id);
+        Msg(res, "Tag Deleted", result);
+    } else {
+        next(new Error("No Tag with that id!"));
+    }   
+}
+
 module.exports = {
     all,
     create,
     get,
-    update
+    update,
+    drop
 }
