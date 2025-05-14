@@ -25,8 +25,20 @@ const create = async (req, res, next) => {
     }
 }
 
+const update = async(req,res,next)=>{
+    let id= req.params.id;
+    let tag = await TagService.getById(id);
+    if(tag){
+        let result = await TagService.modify(tag._id,req.body);
+        Msg(res,"Tag Updated", result);
+    }else{
+        next(new Error("No Tag with that id!"));
+    }
+}
+
 module.exports = {
     all,
     create,
-    get
+    get,
+    update
 }

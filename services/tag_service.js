@@ -24,9 +24,15 @@ const add = async (name) => {
     return result;
 }
 
+const modify = async(id,obj)=> {
+    let result = await model.findByIdAndUpdate(id, obj);
+    return result;
+}
+
 module.exports = {
     getAll,
     getByName,
     getById,
     add,
+    modify
 }
