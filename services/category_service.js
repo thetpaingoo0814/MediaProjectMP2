@@ -5,6 +5,11 @@ const getById = async (id) => {
     return category;
 }
 
+const getByName = async (id) => {
+    let category = await model.findOne({name});
+    return category;
+}
+
 const getAll = async () => {
     let categories = await model.find();
     return categories;
@@ -32,4 +37,5 @@ module.exports = {
     add,
     modify,
     remove,
+    getByName
 }
