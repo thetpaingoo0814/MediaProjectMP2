@@ -33,6 +33,10 @@ const drop = async(req, res, next) => {
         next(new Error("Category not found!"));
     }
 }
+const  droping = async(req,res,next)=> {
+    console.log("hello");
+}
+
 
 module.exports = {
     all,
