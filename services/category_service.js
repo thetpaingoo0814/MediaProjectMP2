@@ -5,7 +5,7 @@ const getById = async (id) => {
     return category;
 }
 
-const getByName = async (id) => {
+const getByName = async (name) => {
     let category = await model.findOne({name});
     return category;
 }

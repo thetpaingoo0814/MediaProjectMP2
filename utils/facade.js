@@ -5,8 +5,14 @@ const {validateToken,validateRole,validateStaff,validateBody} = require('./valid
 const UserService = require('../services/user_service');
 const CategoryService = require('../services/category_service'); 
 const TagService = require('../services/tag_service');
+const PostService = require('../services/post_service');
+const CommentService = require('../services/comment_service');
+const AdvService = require('../services/adv_service');
 
 const {userSchema} = require('./schemas/user_schema');
+const {tagSchema} = require('./schemas/tag_schema');
+const {postSchema} = require('./schemas/post_schema');
+
 
 module.exports = {
     saveSingleFile,
@@ -21,6 +27,8 @@ module.exports = {
     makeRandom,
 
     userSchema,
+    tagSchema,
+    postSchema,
 
     validateToken,
     validateRole,
@@ -29,5 +37,8 @@ module.exports = {
     
     UserService,
     CategoryService,
-    TagService
+    TagService,
+    PostService,
+    CommentService,
+    AdvService
 }

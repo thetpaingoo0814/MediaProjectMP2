@@ -61,3 +61,10 @@ May14
 Create Tags
 Modify the code to look like professional code like a pro coder how they validate authentication and authorization using "try catch"
 Error Handling
+
+May17
+Create comment
+Create Post
+Create Advertisement
+
+API define

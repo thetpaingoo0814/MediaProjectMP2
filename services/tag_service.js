@@ -35,7 +35,7 @@ const getById = async (id) => {
 const add = async (name) => {
     let result = null;
     try {
-        result = await model.findOne({name}).save();
+        result = await new model({name}).save();
     }catch (error) {
         console.log("Error at add tags"); 
     }

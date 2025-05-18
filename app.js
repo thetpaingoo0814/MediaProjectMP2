@@ -15,10 +15,18 @@ app.use(fileUpload());
 const userRouter = require('./routes/user_route');
 const categoryRouter = require('./routes/category_route');
 const tagRouter = require('./routes/tag_route');
+const postRouter = require('./routes/post_route');
+const commentRouter = require('./routes/comment_route');
+const advRouter = require('./routes/adv_route');
+const apiRouter = require('./routes/api_route');
 
 app.use('/users', userRouter);
 app.use('/cats', categoryRouter);
 app.use('/tags',tagRouter);
+app.use('/posts', postRouter);
+app.use('/comments', commentRouter);
+app.use('/advs', advRouter);
+app.use('/api', apiRouter);
 
 const {saveSingleFile,RDB} = require('./utils/facade')
 

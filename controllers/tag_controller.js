@@ -8,7 +8,6 @@ const all = async (req, res, next) => {
     } else {
         Msg(res, "All tags", tags);
     }
-    
 }
 
 const get = async (req, res, next) => {

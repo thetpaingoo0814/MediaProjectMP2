@@ -26,7 +26,7 @@ const saveMultipleFile = (req,res,next) => {
         if(req.files.files){
             for(let file of req.files.files){
                 let imagePath = shareSave(file);
-                imgPaths.push(getImageLink(file));
+                imgPaths.push(imagePath);
             }
             req.body['images'] = imgPaths;
             next();
