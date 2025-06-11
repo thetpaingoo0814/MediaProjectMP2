@@ -26,5 +26,8 @@ router.get('/post/auth/:id/:index', PostController.postsByAuthor);
 router.post('/register',validateBody(userSchema.register), UserController.register);
 router.post('/login',validateBody(userSchema.login), UserController.login);
 router.get('/me',validateToken,UserController.getMe);
+router.get("/version", (req, res) => {
+    res.status(200).json({msg:"Version 1.0.1"});
+});
 
 module.exports = router;
